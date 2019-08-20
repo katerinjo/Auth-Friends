@@ -6,8 +6,8 @@ import ItemList from './ItemList';
 export default ({ setPending, friends }) => {
   return (
     <>
-    <FriendForm subFun={setPending} />
-    <ItemList items={friends} failureText='you have no friends' />
-  </>
+      <FriendForm subFun={setPending} />
+      <ItemList items={friends} failureText='you have no friends' />
+    </>
   );
 }

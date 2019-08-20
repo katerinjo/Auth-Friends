@@ -12,17 +12,25 @@ function App() {
   const [pending, setPending] = useState(null);
 
   useEffect(() => {
-    alert(JSON.stringify(pending))
     setFriends(pending);
     setPending(null);
   }, [pending]);
 
+  const login = credentials => {
+    axios.post('http://localhost:5000/api/login', credentials)
+      .then(res => {
+        console.log(res)
+        localStorage.setItem('token', res.data.payload);
+      })
+      .catch(console.log);
+  }
+  
   return (
     <Router>
       <div className='App'>
         <h1>Friends List App</h1>
         <NavLink to='/list'>access friends</NavLink>
-        <Route path='/' exact component={Landing} />
+        <Route path='/' exact render={() => <Landing subFun={login} />} />
         <PrivateRoute
           path='/list'
           setPending={setPending}
