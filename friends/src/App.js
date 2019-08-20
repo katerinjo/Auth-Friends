@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import axios from 'axios';
 import './App.css';
 
-import FriendForm from './components/FriendForm';
-import ItemList from './components/ItemList';
+import PrivateRoute from './components/PrivateRoute';
+import Landing from './components/Landing';
+import SecretPage from './components/SecretPage';
 
 function App() {
   const [friends, setFriends] = useState([]);
@@ -21,13 +22,13 @@ function App() {
       <div className='App'>
         <h1>Friends List App</h1>
         <NavLink to='/list'>access friends</NavLink>
-        <Route path='/' exact component={} />
-        <Route path='/list' render={() => (
-          <>
-            <FriendForm subFun={setPending} />
-            <ItemList items={friends} failureText='you have no friends' />
-          </>
-        )} />
+        <Route path='/' exact component={Landing} />
+        <PrivateRoute
+          path='/list'
+          setPending={setPending}
+          friends={friends}
+          component={SecretPage}
+        />
       </div>
     </Router>
   );
