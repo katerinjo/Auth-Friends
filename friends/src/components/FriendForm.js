@@ -50,7 +50,7 @@ export default withFormik({
   }),
 
   handleSubmit(vals, { resetForm }) {
-    vals.subFun('formicform submitted');
+    vals.subFun(vals);
     resetForm();
   }
 })(Basic);
